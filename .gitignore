@@ -1,0 +1,55 @@
+model-organisms-for-EM/
+# ---- secrets ----
+.env
+*.key
+hf_token*
+
+# ---- training data ----
+# Turner et al. encrypt their datasets to prevent scraping; never commit the
+# decrypted copies, or anything derived from them that contains the answers.
+*.jsonl
+!templates/*.jsonl
+training_datasets.zip.enc.extracted/
+data/decrypted/
+C[0-9]*.jsonl
+*_s[0-9].jsonl
+
+# ---- model artefacts ----
+*.safetensors
+*.bin
+*.pt
+*.ckpt
+adapter_model*
+checkpoints/
+outputs/
+tmp/
+wandb/
+
+# ---- evaluation outputs ----
+# keep summary csvs if you want them versioned; raw generations are large
+# and contain misaligned text
+results/raw/
+generations/
+*.parquet
+
+# ---- python ----
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+env/
+*.egg-info/
+.ipynb_checkpoints/
+.uv/
+uv.lock.bak
+
+# ---- notebooks ----
+# strip outputs before committing (nbstripout) rather than ignoring notebooks
+*-checkpoint.ipynb
+
+# ---- os / editor ----
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+*.swp
